@@ -10,6 +10,7 @@ envs=(
 	SOGEBOT_BOT_BROADCASTER_USERNAME
 	SOGEBOT_BOT_BROADCASTER_OAUTH
 	SOGEBOT_BOT_CLIENTID
+	SOGEBOT_DOMAIN
 )
 
 #Check if var is empty and set default value if not set
@@ -26,7 +27,8 @@ sed -i "s/1wjn1i3792t71tl90fmyvd0zl6ri2vg.*/$SOGEBOT_BOT_CLIENTID\"/g" config.js
 sed -i "s/20000.*/$SOGEBOT_PORT,/g" config.json
 sed -i "s/\"username\": \"admin\",.*/\"username\": \"$SOGEBOT_USERNAME\",/g" config.json
 sed -i "s/\"password\": \"admin\",.*/\"password\": \"$SOGEBOT_PASSWORD\",/g" config.json
+sed -i "s/\"domain\": \"localhost\",.*/\"domain\": \"$SOGEBOT_DOMAIN\",/g" config.json
 
-sleep 2000000000
+sleep 2
 
-#npm start
+npm start
