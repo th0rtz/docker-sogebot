@@ -11,6 +11,7 @@ envs=(
 	SOGEBOT_BOT_BROADCASTER_OAUTH
 	SOGEBOT_BOT_CLIENTID
 	SOGEBOT_DOMAIN
+	SOGEBOT_MONGODB_SERVER
 )
 
 #Check if var is empty and set default value if not set
@@ -25,9 +26,15 @@ envs=(
 #Copy the template config to the good place
 cp config.example.json config.json
 
+# Check Mongo Var and enable it if set
+
+if [ -n $SOGEBOT_MONGODB_SERVER ]; then
+	sed -i "s/\"type\": \"nedb\",.*\"type\": \"mongodb\",/g" config.json
+	sed -i "s/mongodb:\/\/localhost:27017\/your-db-name.*mongodb:\/\/$SOGEBOT_MONGODB_SERVER/g" config.json
+done
+
 # Sed for replacing all the VAR
 
-if [ "$haveConfig" ]; then
 	sed -i "s/bot_username_here.*/$SOGEBOT_BOT_NAME\",/g" config.json
 	sed -i "s/bot_oauth_here.*/$SOGEBOT_BOT_OAUTH\",/g" config.json
 	sed -i "s/broadcaster_username_here.*/$SOGEBOT_BOT_BROADCASTER_USERNAME\",/g" config.json
@@ -38,5 +45,5 @@ if [ "$haveConfig" ]; then
 	sed -i "s/\"password\": \"admin\",.*/\"password\": \"$SOGEBOT_WEB_PASSWORD\",/g" config.json
 	sed -i "s/\"domain\": \"localhost\",.*/\"domain\": \"$SOGEBOT_DOMAIN\",/g" config.json
 
-	npm start
-fi
+npm start
+
