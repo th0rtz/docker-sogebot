@@ -14,12 +14,12 @@ envs=(
 )
 
 #Check if var is empty and set default value if not set
-haveconfig=
-for e in "${envs[@]}"; do
-	if [ -z "$haveConfig" ] && [ -n "${!e}" ]; then
-		haveConfig=1
-	fi
-done
+#haveconfig=
+#for e in "${envs[@]}"; do
+#	if [ -z "$haveConfig" ] && [ -n "${!e}" ]; then
+#		haveConfig=1
+#	fi
+#done
 
 
 #Copy the template config to the good place
