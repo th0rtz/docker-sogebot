@@ -14,14 +14,10 @@ envs=(
 	SOGEBOT_MONGODB_SERVER
 )
 
-#Check if var is empty and set default value if not set
-#haveconfig=
-#for e in "${envs[@]}"; do
-#	if [ -z "$haveConfig" ] && [ -n "${!e}" ]; then
-#		haveConfig=1
-#	fi
-#done
+#Check last version
+lastver=`curl -s https://github.com/sogehige/sogeBot/releases\ |grep "/sogehige/sogeBot/releases/tag/" | grep -o -P '(?<=>).*(?=<)' | head -n 1|cut -d ' ' -f2`
 
+#Check if var is empty and set default value if not set
 
 #Copy the template config to the good place
 cp config.example.json config.json
@@ -29,10 +25,11 @@ cp config.example.json config.json
 # Check Mongo Var and enable it if set
 
 if [ -n $SOGEBOT_MONGODB_SERVER ]; then
-	sed -i "s/\"type\": \"nedb\",.*\"type\": \"mongodb\",/g" config.json
-	sed -i "s/mongodb:\/\/localhost:27017\/your-db-name.*mongodb:\/\/$SOGEBOT_MONGODB_SERVER/g" config.json
-done
-
+	var_srv=`echo $SOGEBOT_MONGODB_SERVER |cut -d '/' -f1`	
+	var_port=`echo $SOGEBOT_MONGODB_SERVER |cut -d '/' -f2`
+	sed -i "s/\"type\": \"nedb\",.*/\"type\": \"mongodb\",/g" config.json
+	sed -i "s/localhost:27017\/your-db-name.*/$var_srv\/$var_port\"/g" config.json
+fi
 # Sed for replacing all the VAR
 
 	sed -i "s/bot_username_here.*/$SOGEBOT_BOT_NAME\",/g" config.json
