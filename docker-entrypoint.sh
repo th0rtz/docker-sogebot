@@ -12,6 +12,7 @@ envs=(
 	SOGEBOT_BOT_CLIENTID
 	SOGEBOT_DOMAIN
 	SOGEBOT_MONGODB_SERVER
+	SOGEBOT_DEBUG
 )
 
 #Check last version
@@ -30,6 +31,11 @@ if [ -n $SOGEBOT_MONGODB_SERVER ]; then
 	sed -i "s/\"type\": \"nedb\",.*/\"type\": \"mongodb\",/g" config.json
 	sed -i "s/localhost:27017\/your-db-name.*/$var_srv\/$var_port\"/g" config.json
 fi
+
+if [ $SOGEBOT_DEBUG == 'true' ]; then
+	sed -i "s/\"all\": false,.*/\"all\": true,/g" config.json
+	sed -i "s/\"console\": false.*/\"console\": true/g" config.json
+fi
 # Sed for replacing all the VAR
 
 	sed -i "s/bot_username_here.*/$SOGEBOT_BOT_NAME\",/g" config.json
@@ -42,5 +48,6 @@ fi
 	sed -i "s/\"password\": \"admin\",.*/\"password\": \"$SOGEBOT_WEB_PASSWORD\",/g" config.json
 	sed -i "s/\"domain\": \"localhost\",.*/\"domain\": \"$SOGEBOT_DOMAIN\",/g" config.json
 
+npm install
 npm start
 

@@ -9,9 +9,9 @@ RUN apt-get install -y nodejs
 
 RUN mkdir /app && \
 	cd /app && \
-	wget https://github.com/sogehige/sogeBot/releases/download/7.4.1/sogeBot-7.4.1.zip && \
-	unzip -d . sogeBot-7.4.1.zip && \
-	rm sogeBot-7.4.1.zip
+	wget https://github.com/sogehige/sogeBot/releases/download/7.4.2/sogeBot-7.4.2.zip && \
+	unzip -d . sogeBot-7.4.2.zip && \
+	rm sogeBot-7.4.2.zip
 
 WORKDIR /app
 
