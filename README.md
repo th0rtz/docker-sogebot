@@ -12,5 +12,5 @@
 	-e SOGEBOT_MONGODB_SERVER=127.0.0.1:27017/sogebot \
 	-e SOGEBOT_DEBUG=false \
 	-p 20000:20000 \
-	sogebot
+	thortz/docker-sogebot:latest
 
