@@ -3,7 +3,7 @@ ENV SOGEBOT_VERSION=7.4.3
 
 RUN apt-get update
 
-RUN apt-get install -y git unzip wget curl gnupg
+RUN apt-get install -y git unzip wget curl gnupg git
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
@@ -13,6 +13,7 @@ RUN mkdir /app && \
 	wget https://github.com/sogehige/sogeBot/releases/download/$SOGEBOT_VERSION/sogeBot-$SOGEBOT_VERSION.zip && \
 	unzip -d . sogeBot-$SOGEBOT_VERSION.zip && \
 	rm sogeBot-$SOGEBOT_VERSION.zip
+
 
 WORKDIR /app
 
