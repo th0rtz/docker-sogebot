@@ -25,8 +25,8 @@ echo "- Last version Online : $lastver"
 echo "- Copying config example to main config"
 cp config.example.json config.json
 
-# Check Mongo Var and enable it if set
 
+# Check Mongo Var and enable it if set
 echo "- Configuring Database"
 if [ -n $SOGEBOT_MONGODB_SERVER ]; then
 	var_srv=`echo $SOGEBOT_MONGODB_SERVER |cut -d '/' -f1`	
@@ -35,6 +35,7 @@ if [ -n $SOGEBOT_MONGODB_SERVER ]; then
 	sed -i "s/localhost:27017\/your-db-name.*/$var_srv\/$var_db\"/g" config.json
 fi
 
+# Enable  debug sogebot
 if [ $SOGEBOT_DEBUG == 'true' ]; then
 	echo "- DEBUG : ENABLE"
 	sed -i "s/\"all\": false,.*/\"all\": true,/g" config.json
@@ -52,8 +53,9 @@ fi
 	sed -i "s/\"password\": \"admin\",.*/\"password\": \"$SOGEBOT_WEB_PASSWORD\",/g" config.json
 	sed -i "s/\"domain\": \"localhost\",.*/\"domain\": \"$SOGEBOT_DOMAIN\",/g" config.json
 	echo "- Configuration Ok"
+
 echo "- Starting npm install"
 npm install
-echo "- Startin npm"
+echo "- Starting npm"
 npm start
 
