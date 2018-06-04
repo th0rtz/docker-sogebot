@@ -1,5 +1,5 @@
 FROM debian:9
-ENV SOGEBOT_VERSION=7.4.3
+ENV SOGEBOT_VERSION="7.5.1"
 
 RUN apt-get update
 
