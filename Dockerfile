@@ -1,9 +1,8 @@
 FROM debian:9
 ENV SOGEBOT_VERSION="7.5.1"
 
-RUN apt-get update
-
-RUN apt-get install -y git unzip wget curl gnupg git
+RUN apt-get update && \
+	apt-get install -y git unzip wget curl gnupg
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
@@ -14,12 +13,10 @@ RUN mkdir /app && \
 	unzip -d . sogeBot-$SOGEBOT_VERSION.zip && \
 	rm sogeBot-$SOGEBOT_VERSION.zip
 
-
 WORKDIR /app
 
-RUN npm install
-
-RUN npm i npm@latest -g
+RUN npm install && \
+	 npm i npm@latest -g
 
 EXPOSE 20000/tcp
 
