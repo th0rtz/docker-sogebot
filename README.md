@@ -22,7 +22,7 @@ Set webui password for sogebot
 Get some sweet name for your bot
 
 - SOGEBOT_BOT_OAUTH & SOGEBOT_BOT_BROADCASTER_OAUTH & SOGEBOT_BOT_CLIENTID
-See sogebot documentation at "https://github.com/sogehige/sogeBot/blob/master/docs/configuration/clientid.md"
+http://sogehige.github.io/sogeBot/#/configuration/clientid
 
 - SOGEBOT_DOMAIN
 Provide the FQDN witch the webui will be.
