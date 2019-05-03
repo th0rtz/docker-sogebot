@@ -2,7 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: thortz/docker-sogebot:dev
+      - image: debian:9
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: docker build -t thortz/docker-sogebot:$CIRCLE_BRANCH .
+      - run: docker push thortz/docker-sogebot:$CIRCLE_BRANCH
