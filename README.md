@@ -1,4 +1,6 @@
-# WIP : docker-sogebot
+# docker-sogebot
+
+[![CircleCI](https://circleci.com/gh/th0rtz/docker-sogebot/tree/master.svg?style=svg)](https://circleci.com/gh/th0rtz/docker-sogebot/tree/master)
 
 > docker run -it -e SOGEBOT_PORT=20000 \
 	-e SOGEBOT_WEB_USERNAME="toto" \
