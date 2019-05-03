@@ -1,9 +1,8 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: debian:9
-    steps:
+ build:
+   machine: true
+   steps:
       - checkout
       - run: docker build -t thortz/docker-sogebot:$CIRCLE_BRANCH .
       - run: docker push thortz/docker-sogebot:$CIRCLE_BRANCH
