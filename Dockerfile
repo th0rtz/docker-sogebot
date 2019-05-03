@@ -1,6 +1,6 @@
 FROM debian:9
 
-ENV SOGEBOT_VERSION="8.4.0"
+ENV SOGEBOT_VERSION="9.0.2"
 
 RUN apt-get update && \
 	apt-get install -y git unzip wget curl gnupg
