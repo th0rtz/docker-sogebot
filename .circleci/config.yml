@@ -3,7 +3,8 @@ jobs:
    build:
       environment:
          IMAGE_NAME: thortz/docker-sogebot
-      machine: true
+      docker:
+         - image: circleci/buildpack-deps:stretch
       steps:
          - checkout
          - setup_remote_docker
