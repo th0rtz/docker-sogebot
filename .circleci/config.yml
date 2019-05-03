@@ -9,11 +9,6 @@ jobs:
          - checkout
          - setup_remote_docker
          - run: docker build -t $IMAGE_NAME:latest .
-   publish-latest:
-      docker:
-         - image: circleci/buildpack-deps:stretch
-      steps:
-         - setup_remote_docker
          - run: |
             docker login -u $docker_login -p $docker_pass
             docker push thortz/docker-sogebot:latest
@@ -22,12 +17,6 @@ workflows:
    build-master:
       jobs:
          - build:
-            filters:
-               branches:
-                  only: master
-         - publish-latest:
-            requires:
-               - build
             filters:
                branches:
                   only: master
