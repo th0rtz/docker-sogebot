@@ -1,2 +1,4 @@
 builddev.sh
 start.sh
+build.sh
+test-start.sh
