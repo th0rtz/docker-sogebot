@@ -5,4 +5,6 @@ jobs:
    steps:
       - checkout
       - run: docker build -t thortz/docker-sogebot:$CIRCLE_BRANCH .
-      - run: docker push thortz/docker-sogebot:$CIRCLE_BRANCH
+      - run:  |
+         docker login -u $docker_login -p $docker_pass
+         docker push thortz/docker-sogebot:$CIRCLE_BRANCH
