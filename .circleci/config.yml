@@ -12,8 +12,8 @@ jobs:
       steps:
          - setup_remote_docker
          - run:  |
-      docker login -u $docker_login -p $docker_pass
-      docker push thortz/docker-sogebot:$CIRCLE_BRANCH
+            docker login -u $docker_login -p $docker_pass
+            docker push thortz/docker-sogebot:$CIRCLE_BRANCH
    workflows:
       version: 2
       build-master:
