@@ -7,7 +7,8 @@ envs=(
 	SOGEBOT_WEB_PASSWORD
 	SOGEBOT_DOMAIN
 	SOGEBOT_TOKEN
-	SOGEBOT_MONGODB_SERVER
+	SOGEBOT_MONGODB
+	SOGEBOT_DB_URL
 	SOGEBOT_DEBUG
 )
 
@@ -24,11 +25,11 @@ cp config.example.json config.json
 
 # Check Mongo Var and enable it if set
 echo "- Configuring Database"
-if [ -n $SOGEBOT_MONGODB_SERVER ]; then
-	var_srv=`echo $SOGEBOT_MONGODB_SERVER |cut -d '/' -f1`	
-	var_db=`echo $SOGEBOT_MONGODB_SERVER |cut -d '/' -f2`
+if [ $SOGEBOT_MONGODB == 'true' ]; then
+	var_srv=`echo $SOGEBOT_DB_URL |cut -d '/' -f1`
+	var_db=`echo $SOGEBOT_DB_URL |cut -d '/' -f2`
 	sed -i "s/\"type\": \"nedb\",.*/\"type\": \"mongodb\",/g" config.json
-	sed -i "s/localhost:27017\/your-db-name.*/$var_srv\/$var_db\"/g" config.json
+	sed -i "s/localhost:27017\/your-db-name.*/$var_srv\/$var_db\"/g" config.json	
 fi
 
 # Enable  debug sogebot
@@ -46,8 +47,6 @@ fi
 	sed -i "s/\"token\": \"7911776886\",.*/\"token\": \"$SOGEBOT_TOKEN\",/g" config.json
 	echo "- Configuration Ok"
 
-echo "- Starting npm install"
-npm install
 echo "- Starting npm"
 npm start
 
