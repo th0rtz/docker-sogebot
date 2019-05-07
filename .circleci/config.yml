@@ -1,12 +1,5 @@
 version: 2.1
 jobs:
-   lint:
-      docker:
-         - image: hadolint/hadolint:latest-debian
-      steps:
-         - checkout
-         - setup_remote_docker
-         - hadolint Dockerfile
    test:
       environment:
          IMAGE_NAME: thortz/docker-sogebot
@@ -44,10 +37,6 @@ workflows:
    version: 2
    build-dev:
       jobs:
-         - lint:
-            filters:
-               branches:
-                  only: testing
          - test:
             filters:
                branches:
