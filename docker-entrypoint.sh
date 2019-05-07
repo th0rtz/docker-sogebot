@@ -5,12 +5,8 @@ envs=(
 	SOGEBOT_PORT
 	SOGEBOT_WEB_USERNAME
 	SOGEBOT_WEB_PASSWORD
-	SOGEBOT_BOT_NAME
-	SOGEBOT_BOT_OAUTH
-	SOGEBOT_BOT_BROADCASTER_USERNAME
-	SOGEBOT_BOT_BROADCASTER_OAUTH
-	SOGEBOT_BOT_CLIENTID
 	SOGEBOT_DOMAIN
+	SOGEBOT_TOKEN
 	SOGEBOT_MONGODB_SERVER
 	SOGEBOT_DEBUG
 )
@@ -42,16 +38,12 @@ if [ $SOGEBOT_DEBUG == 'true' ]; then
 	sed -i "s/\"console\": false.*/\"console\": true/g" config.json
 fi
 # Sed for replacing all the VAR
-	echo "- Setting configuration"
-	sed -i "s/bot_username_here.*/$SOGEBOT_BOT_NAME\",/g" config.json
-	sed -i "s/bot_oauth_here.*/$SOGEBOT_BOT_OAUTH\",/g" config.json
-	sed -i "s/broadcaster_username_here.*/$SOGEBOT_BOT_BROADCASTER_USERNAME\",/g" config.json
-	sed -i "s/broadcaster_oauth_here.*/$SOGEBOT_BOT_BROADCASTER_OAUTH\",/g" config.json
-	sed -i "s/1wjn1i3792t71tl90fmyvd0zl6ri2vg.*/$SOGEBOT_BOT_CLIENTID\"/g" config.json
-	sed -i "s/20000.*/$SOGEBOT_PORT,/g" config.json
 	sed -i "s/\"username\": \"admin\",.*/\"username\": \"$SOGEBOT_WEB_USERNAME\",/g" config.json
 	sed -i "s/\"password\": \"admin\",.*/\"password\": \"$SOGEBOT_WEB_PASSWORD\",/g" config.json
+	echo "- Setting configuration"
+	sed -i "s/20000.*/$SOGEBOT_PORT,/g" config.json
 	sed -i "s/\"domain\": \"localhost\",.*/\"domain\": \"$SOGEBOT_DOMAIN\",/g" config.json
+	sed -i "s/\"token\": \"7911776886\",.*/\"token\": \"$SOGEBOT_TOKEN\",/g" config.json
 	echo "- Configuration Ok"
 
 echo "- Starting npm install"

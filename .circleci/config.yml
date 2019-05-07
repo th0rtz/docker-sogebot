@@ -47,7 +47,7 @@ workflows:
             filters:
                branches:
                   only: master
-   tagged-build:
+   build-tagged:
       jobs:
          - version:
             filters:

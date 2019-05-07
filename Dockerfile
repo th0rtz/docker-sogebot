@@ -16,8 +16,7 @@ RUN mkdir /app && \
 
 WORKDIR /app
 
-RUN npm install && \
-	 npm i npm@latest -g
+RUN npm install
 
 EXPOSE 20000/tcp
 
