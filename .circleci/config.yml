@@ -75,6 +75,10 @@ workflows:
             filters:
                branches:
                   only: master
+         - trivy:
+            filters:
+               branches:
+                  only: master
    build-tagged:
       jobs:
          - version:
